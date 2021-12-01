@@ -1,7 +1,7 @@
 import argparse
+from typing import List  # Python 3.8 and earlier
 
-
-def find_increase_count(measurements, window=1):
+def find_increase_count(measurements: List[int], window: int=1) -> int:
     """For a given set of measurements and for a give window size, find how many times there's an increase in the sum of consecutive measurements
 
     Parameters:
