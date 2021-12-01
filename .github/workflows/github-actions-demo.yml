@@ -6,4 +6,4 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: python -V
+      - run: python3 01/sonar_sweep.py --inputs 01/inputs.txt --window 3 | grep 1486
