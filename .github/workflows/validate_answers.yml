@@ -13,4 +13,5 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: python3 02/dive.py --inputs 02/inputs.txt | grep 2086357770
+      - run: python3 02/dive.py --inputs 02/inputs.txt | grep 2187380
+      - run: python3 02/dive.py --inputs 02/inputs.txt --aim | grep 2086357770
