@@ -1,0 +1,10 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  day01:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: python3 01/sonar_sweep.py --inputs 01/inputs.txt --window 1 | grep 1446
+      - run: python3 01/sonar_sweep.py --inputs 01/inputs.txt --window 3 | grep 1486
