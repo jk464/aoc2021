@@ -2,7 +2,15 @@ import argparse
 from typing import List  # Python 3.8 and earlier
 
 
-def calculate_moved_distance(movements: list, use_aim: bool = False) -> int:
+class Instruction:
+    def __init__(self, direction: str, value: int) -> None:
+        self.direction = direction
+        self.value = value
+
+
+def calculate_moved_distance(
+    movements: List[Instruction], use_aim: bool = False
+) -> int:
     """For a given set of movement inputs calculates the horizontal and vertical distance moved and returns the product of the two values
 
     Parameteres:
@@ -18,20 +26,20 @@ def calculate_moved_distance(movements: list, use_aim: bool = False) -> int:
     aim = 0
 
     for move in movements:
-        if move[0] == "forward":
-            x += move[1]
+        if move.direction == "forward":
+            x += move.value
             if use_aim:
-                y += move[1] * aim
-        elif move[0] == "down":
+                y += move.value * aim
+        elif move.direction == "down":
             if use_aim:
-                aim += move[1]
+                aim += move.value
             else:
-                y += move[1]
-        elif move[0] == "up":
+                y += move.value
+        elif move.direction == "up":
             if use_aim:
-                aim -= move[1]
+                aim -= move.value
             else:
-                y -= move[1]
+                y -= move.value
 
     movement_product = x * y
 
@@ -44,13 +52,16 @@ if __name__ == "__main__":
     # Parse arguments
     parser = argparse.ArgumentParser()
     parser.add_argument("--inputs", help="Inputs file with values")
-    parser.add_argument('--aim', action='store_true', default=False)
+    parser.add_argument("--aim", action="store_true", default=False)
 
     args = parser.parse_args()
 
     # Read in inputs file - also ensure we store values as ints
     with open(args.inputs, "r") as file:
-        inputs = [[l.split(" ")[0], int(l.split(" ")[1])] for l in file.readlines()]
+        inputs = [
+            Instruction(direction=l.split(" ")[0], value=int(l.split(" ")[1]))
+            for l in file.readlines()
+        ]
 
     # Find our answer :)
     print(calculate_moved_distance(inputs, args.aim))
