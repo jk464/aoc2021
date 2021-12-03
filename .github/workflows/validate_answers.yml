@@ -6,5 +6,12 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: python3 01/sonar_sweep.py --inputs 01/inputs.txt --window 1 | grep 1446
-      - run: python3 01/sonar_sweep.py --inputs 01/inputs.txt --window 3 | grep 1486
+      - run: python3 src/01/sonar_sweep.py --inputs inputs/01/inputs.txt --window 1 | grep 1446
+      - run: python3 src/01/sonar_sweep.py --inputs inputs/01/inputs.txt --window 3 | grep 1486
+  day02:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - run: python3 src/02/dive.py --inputs inputs/02/inputs.txt | grep 2187380
+      - run: python3 src/02/dive.py --inputs inputs/02/inputs.txt --aim | grep 2086357770
