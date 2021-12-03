@@ -66,13 +66,9 @@ def find_rating(ratings: List[str], rating_type: str) -> int:
             else:
                 remove_bit = 1
 
-        trimmed_list = []
-
-        for measurement in ratings:
-            if int(measurement[i]) != remove_bit:
-                trimmed_list.append(measurement)
-
-        ratings = trimmed_list.copy()
+        ratings = [
+            measurement for measurement in ratings if int(measurement[i]) != remove_bit
+        ]
 
         if len(ratings) == 1:
             return int(ratings[0], 2)
