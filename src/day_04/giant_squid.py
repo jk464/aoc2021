@@ -1,6 +1,5 @@
 import argparse
 from typing import List, Tuple  # Python 3.8 and earlier
-from pprint import pprint
 
 
 def check_bingo_board(
